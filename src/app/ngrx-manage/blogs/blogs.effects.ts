@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { catchError, exhaustMap, map, of, tap } from "rxjs";
+import { Actions, Effect, createEffect, ofType } from "@ngrx/effects";
+import { Observable, catchError, exhaustMap, map, of, tap } from "rxjs";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { HttpErrorHandle } from "../app/app.action";
 import { environment } from "src/environments/environment";
