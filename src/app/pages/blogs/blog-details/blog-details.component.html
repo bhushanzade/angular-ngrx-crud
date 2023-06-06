@@ -1,0 +1,13 @@
+<div class="card w-25" *ngIf="$model | async as item">
+  <div class="card-image">
+    <img src="https://i.ibb.co/CKNmhMX/blog1.jpg" width="100%" />
+  </div>
+  <div class="card-body">
+    <h4><a [routerLink]="['/blogs', item.slug]">{{item.title}}</a></h4>
+    <p>{{item.content}}</p>
+  </div>
+  <div class="card-footer">
+    <button class="m-2 btn btn-primary" [routerLink]="['/blogs/edit', item.slug]">Edit</button>
+    <button class="m-2 btn btn-danger ms-2" (click)="deleteBlog(item.slug)">Delete</button>
+  </div>
+</div>
