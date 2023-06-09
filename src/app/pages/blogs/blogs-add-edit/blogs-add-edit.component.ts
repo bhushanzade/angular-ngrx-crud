@@ -3,10 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription, take } from 'rxjs';
-import { ApplicationState } from 'src/app/ngrx-manage/app/app.state';
-import { BlogAddAction, BlogDetailAction, BlogEditAction } from 'src/app/ngrx-manage/blogs/blogs.action';
-import { getUserBlogData, getUserBlogSlug } from 'src/app/ngrx-manage/blogs/blogs.selector';
-import { Blog, IBlog } from 'src/app/ngrx-manage/blogs/bogs.state';
+import { BlogAddAction, BlogDetailAction, BlogEditAction } from 'src/app/ngrx-manage/blog_entity/blogs.action';
+import { getUserBlogDetailEnitityState, getUserBlogDetailSlugEnitityState } from 'src/app/ngrx-manage/blog_entity/blogs.selector';
 
 @Component({
   selector: 'app-blogs-add-edit',
@@ -29,12 +27,12 @@ export class BlogsAddEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store.select(getUserBlogSlug).pipe(take(1)).subscribe(data => {
+    this.store.select(getUserBlogDetailSlugEnitityState).pipe(take(1)).subscribe(data => {
       this.slug = data.slug;
       if (data.slugChange) {
-        this.store.dispatch(new BlogDetailAction(data.slug));
+        this.store.dispatch(BlogDetailAction({ slug: data.slug }));
       }
-      const subscribe: Subscription = this.store.select(getUserBlogData).subscribe(
+      const subscribe: Subscription = this.store.select(getUserBlogDetailEnitityState).subscribe(
         {
           complete: () => subscribe.unsubscribe(), // completeHandler
           next: (res) => {
@@ -48,7 +46,7 @@ export class BlogsAddEditComponent implements OnInit {
           },
         }
       )
-    });
+    })
   }
 
   get f() {
@@ -61,9 +59,9 @@ export class BlogsAddEditComponent implements OnInit {
       return;
     }
     if (this.slug) {
-      this.store.dispatch(new BlogEditAction(this.reativeForm.value, this.slug))
+      this.store.dispatch(BlogEditAction({ payload: this.reativeForm.value, slug: this.slug }))
     }
-    else this.store.dispatch(new BlogAddAction(this.reativeForm.value));
+    else this.store.dispatch(BlogAddAction(this.reativeForm.value));
   }
 
 }

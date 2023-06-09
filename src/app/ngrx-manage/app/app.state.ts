@@ -9,6 +9,8 @@ import { UserProfileReducer } from "../profile/profile.reducer";
 import { BLOG_STATE_NAME } from "../blogs/blogs.selector";
 import { BlogReducer } from "../blogs/blogs.reducer";
 import { routerReducer } from "@ngrx/router-store";
+import { BlogEntityReducer } from "../blog_entity/blogs.reducer";
+import { BLOG_ENTITY_STATE_NAME } from "../blog_entity/blogs.selector";
 
 export interface IAuthUser {
   name: string;
@@ -48,5 +50,6 @@ export const AppReducer: ActionReducerMap<any, any> = {
   [LOGOUT_STATE_NAME]: LogoutReducer,
   [USER_PROFILE_STATE_NAME]: UserProfileReducer,
   [BLOG_STATE_NAME]: BlogReducer,
+  [BLOG_ENTITY_STATE_NAME]: BlogEntityReducer,
   router: routerReducer,
 };

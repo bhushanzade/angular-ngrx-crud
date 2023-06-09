@@ -8,6 +8,7 @@ import { EffectsFeatureModule, EffectsModule } from '@ngrx/effects';
 import { BlogsEffect } from 'src/app/ngrx-manage/blogs/blogs.effects';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BlogDetailsComponent } from './blog-details/blog-details.component';
+import { BlogsEnitityEffect } from 'src/app/ngrx-manage/blog_entity/blogs.effects';
 
 const routes: Routes = [
   {
@@ -37,7 +38,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    EffectsModule.forFeature([BlogsEffect]),
+    EffectsModule.forFeature([BlogsEnitityEffect]),
     FormsModule,
     ReactiveFormsModule
   ]

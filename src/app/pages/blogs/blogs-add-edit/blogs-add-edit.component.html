@@ -12,7 +12,8 @@
       <p class="text-danger" *ngIf="f['content'].invalid">This field is required</p>
     </div>
     <div class="d-flex justify-content-center mt-5">
-      <button class="btn btn-success btn-lg " type="button" (click)="onSave()"> Save Blog </button>
+      <button class="btn btn-success btn-lg " type="button" (click)="onSave()"> {{slug ? 'Update': 'Save'}} Blog
+      </button>
     </div>
   </form>
 </div>

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable, map, of, switchMap, take, takeLast } from 'rxjs';
-import { BlogDeleteAction, BlogDetailAction } from 'src/app/ngrx-manage/blogs/blogs.action';
-import { getUserBlogData, getUserBlogSlug, getUserBlogsData } from 'src/app/ngrx-manage/blogs/blogs.selector';
+import { Observable, take } from 'rxjs';
+import { BlogDeleteAction, BlogDetailAction } from 'src/app/ngrx-manage/blog_entity/blogs.action';
+import { getUserBlogDetailEnitityState, getUserBlogDetailSlugEnitityState } from 'src/app/ngrx-manage/blog_entity/blogs.selector';
 import { Blog } from 'src/app/ngrx-manage/blogs/bogs.state';
 
 @Component({
@@ -19,20 +19,20 @@ export class BlogDetailsComponent implements OnInit {
     private store: Store,
     private route: ActivatedRoute
   ) {
-    this.$model = this.store.select(getUserBlogData) as Observable<Blog>;
+    this.$model = this.store.select(getUserBlogDetailEnitityState) as Observable<Blog>;
   }
 
   ngOnInit(): void {
-    this.store.select(getUserBlogSlug).pipe(take(1)).subscribe(data => {
+    this.store.select(getUserBlogDetailSlugEnitityState).pipe(take(1)).subscribe(data => {
       if (data.slugChange) {
-        this.store.dispatch(new BlogDetailAction(data.slug));
+        this.store.dispatch(BlogDetailAction({ slug: data.slug }));
       }
     })
   }
 
   deleteBlog(slug: string): void {
     if (confirm("Do you really want to delete this blog?")) {
-      this.store.dispatch(new BlogDeleteAction(slug));
+      this.store.dispatch(BlogDeleteAction({ slug }));
     }
   }
 

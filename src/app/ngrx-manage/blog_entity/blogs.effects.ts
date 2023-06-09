@@ -8,7 +8,7 @@ import { Router } from "@angular/router";
 
 
 @Injectable()
-export class BlogsEffect {
+export class BlogsEnitityEffect {
 
   constructor(
     private action$: Actions,
