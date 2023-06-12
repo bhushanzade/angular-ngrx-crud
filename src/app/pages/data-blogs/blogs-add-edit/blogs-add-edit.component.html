@@ -1,0 +1,19 @@
+<div class="bg-light p-5 rounded-lg" style="margin-top: 100px;">
+  <form [formGroup]="reativeForm">
+    <div class="mb-3">
+      <label>Title</label>
+      <input class="form-control" name="title" formControlName="title" [class.is_invalid]="f['title'].invalid" />
+      <p class="text-danger" *ngIf="f['title'].invalid">This field is required</p>
+    </div>
+    <div class="mb-3">
+      <label>Description</label>
+      <textarea class="form-control" name="content" formControlName="content"
+        [class.is_invalid]="f['content'].invalid"></textarea>
+      <p class="text-danger" *ngIf="f['content'].invalid">This field is required</p>
+    </div>
+    <div class="d-flex justify-content-center mt-5">
+      <button class="btn btn-success btn-lg " type="button" (click)="onSave()"> {{slug ? 'Update': 'Save'}} Blog
+      </button>
+    </div>
+  </form>
+</div>

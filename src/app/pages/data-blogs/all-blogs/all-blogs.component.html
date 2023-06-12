@@ -1,0 +1,20 @@
+<div class="blog-grid">
+  <div class="container">
+    <div class="d-flex justify-content-end">
+      <button type="button" class="btn btn-outline-primary" routerLink="/data-blogs/add">Add Blog</button>
+    </div>
+    <div class="row" *ngIf="$items | async as model">
+      <div class="col-md-4" *ngFor="let item of model">
+        <div class="card">
+          <div class="card-image">
+            <img src="https://i.ibb.co/CKNmhMX/blog1.jpg" />
+          </div>
+          <div class="card-body">
+            <h4><a [routerLink]="['/data-blogs', item.slug]">{{item.title}}</a></h4>
+            <p>{{item.content}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

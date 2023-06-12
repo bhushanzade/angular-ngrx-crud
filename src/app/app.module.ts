@@ -23,6 +23,8 @@ import { Router } from '@angular/router';
 import { AuthInterceptor } from './config/auth.interceptor';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { CustomSerializer } from './ngrx-manage/router/custom-serializer';
+import { EntityDataModule } from '@ngrx/data';
+import { entityConfig } from './ngrx-manage/app/app-entity-metadata';
 
 
 @NgModule({
@@ -46,6 +48,7 @@ import { CustomSerializer } from './ngrx-manage/router/custom-serializer';
     StoreRouterConnectingModule.forRoot({
       serializer: CustomSerializer,
     }),
+    EntityDataModule.forRoot(entityConfig),
     ToastrModule.forRoot(),
   ],
   providers: [
